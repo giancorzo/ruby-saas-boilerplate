@@ -2,6 +2,9 @@
  = require twitter-bootstrap-static/bootstrap
  = require twitter-bootstrap-static/sprites
  = require twitter-bootstrap-static/fontawesome
+ = require stroke-seven
+ = require stroke-seven-helper
+ = require vendor/metisMenu/metisMenu
  = require_self
  = require main
 */
