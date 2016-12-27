@@ -7,7 +7,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 
-gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'mysql2', '~> 0.3.18'
 gem 'therubyracer', :platform=>:ruby

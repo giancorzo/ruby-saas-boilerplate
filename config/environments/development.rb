@@ -27,6 +27,9 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  #Mute assets log
+  config.assets.quiet = true
+
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
