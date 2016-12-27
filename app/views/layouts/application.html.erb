@@ -13,6 +13,7 @@
     <%= render "layouts/shared/application/header" %>
     <%= render "layouts/shared/application/menu" %>
     <div id="wrapper">
+      <%= yield :page_title %>
       <div class="content">
         <%= yield %>
       </div>

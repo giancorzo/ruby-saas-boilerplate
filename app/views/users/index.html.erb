@@ -1,0 +1,39 @@
+<% content_for :page_title do %>
+  <div class="small-header">
+      <div class="hpanel">
+          <div class="panel-body">
+              <div id="hbreadcrumb" class="pull-right">
+                  <ol class="hbreadcrumb breadcrumb">
+                      <li><%= link_to "Dashboard", root_path %></li>
+                      <li>
+                          <span>Users</span>
+                      </li>
+                      <li class="active">
+                          <span>List all</span>
+                      </li>
+                  </ol>
+              </div>
+              <h2 class="font-light m-b-xs">
+                  Users
+              </h2>
+              <small>Manage your application users</small>
+          </div>
+      </div>
+  </div>
+<% end %>
+<div class="row">
+  <% @users.each_slice(4) do |rows| %>
+    <% rows.each do |user| %>
+      <div class="col-lg-3">
+        <%= link_to edit_user_path(user), class: "hpanel #{header_color(user)} user-panel" do %>
+          <div class="panel-body">
+            <span class="label label-<%= bootstrap_color(user) %> pull-right"><%= user.role.capitalize %></span>
+            <img alt="logo" class="img-circle m-b" src="images/profile.jpg">
+            <h3><%= user.name %></h3>
+            <div class="text-muted font-bold m-b-xs"><%= user.email %></div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
