@@ -58,6 +58,9 @@ pickle-email-*.html
 #
 # Here are some files you may want to ignore globally:
 
+# Ignore application configuration
+/config/application.yml
+
 # scm revert files
 **.orig
 
