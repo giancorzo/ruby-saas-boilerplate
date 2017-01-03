@@ -1,9 +1,12 @@
 <aside id="menu">
   <div id="navigation">
     <div class="profile-picture">
-      <a href="index.html">
-        <img src="images/profile.jpg" class="img-circle m-b" alt="logo">
-      </a>
+      <%= image_tag current_user.avatar.url(:thumb) if current_user.avatar.exists? %>
+      <% if !current_user.avatar.exists? %>
+        <div class="img-circle m-b profile-empty-image" style="margin: 0px auto 15px auto;">
+          <%= current_user.name[0]%>
+        </div>
+      <% end %>
 
       <div class="stats-label text-color">
         <span class="font-extra-bold font-uppercase">
@@ -24,17 +27,22 @@
     </div>
 
     <ul class="nav" id="side-menu">
-      <li class="active">
+      <li class="<%= current_page?(root_path) ? "active" : "" %>">
         <a href="index.html">
           <span class="nav-label">Dashboard</span>
         </a>
       </li>
-      <li>
-        <a href="#"><span class="nav-label">Users</span><span class="fa arrow"></span> </a>
-        <ul class="nav nav-second-level collapse" aria-expanded="false">
-          <li><%= link_to "All Users",users_path %></a></li>
-          <li><%= link_to "Add new",new_user_path %></li>
-          <li><a href="buttons.html">Your profile</a></li>
+      <li class="<%= current_page?(users_path) || current_page?(new_user_path) || current_page?(user_path(current_user)) ? "active" : ""%>">
+        <a href="#" <%= current_page?(users_path) || current_page?(new_user_path) || current_page?(user_path(current_user)) ? 'aria-expanded="true"' : "" %>>
+          <span class="nav-label">Users</span>
+          <span class="fa arrow"></span>
+        </a>
+        <ul class="nav nav-second-level collapse  <%= current_page?(users_path) || current_page?(new_user_path) ? 'in' : "" %>"
+            aria-expanded="<%= current_page?(users_path) ||
+                               current_page?(new_user_path)%>">
+          <li class="<%= current_page?(users_path) ? "active" : "" %>"><%= link_to "All Users",users_path %></a></li>
+          <li class="<%= current_page?(new_user_path) ? "active" : "" %>"><%= link_to "Invite new user",new_user_path %></li>
+          <li class="<%= current_page?(user_path(current_user)) ? "active" : "" %>"><%= link_to "Your profile", current_user %></li>
         </ul>
       </li>
     </ul>

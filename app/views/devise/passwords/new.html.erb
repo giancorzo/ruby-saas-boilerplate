@@ -1,12 +1,40 @@
-<div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form'}) do |f| %>
-    <h3>Forgot your password?</h3>
-    <p>We'll send password reset instructions.</p>
-    <%= devise_error_messages! %>
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+<% content_for :scripts do %>
+  <script type="text/javascript">
+    $().ready(function() {
+      $("form").validate({
+        rules: {
+          "user[email]" : {
+            required: true,
+            email: true
+          }
+        },
+        submitHandler: function(form) {
+          form.submit();
+        }
+      });
+    });
+</script>
+<% end %>
+<div class="color-line"></div>
+<div class="login-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-center m-b-md">
+        <h3>Forgot your password?</h3>
+        <p>We'll send password reset instructions.</p>
+      </div>
+      <div class="hpanel">
+        <div class="panel-body">
+          <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form'}) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="form-group">
+              <%= f.label :email %>
+              <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+            </div>
+            <%= f.submit 'Reset Password', class: 'btn btn-success btn-block' %>
+          <% end %>
+        </div>
+      </div>
     </div>
-     <%= f.submit 'Reset Password', :class => 'button right' %>
-  <% end %>
+  </div>
 </div>

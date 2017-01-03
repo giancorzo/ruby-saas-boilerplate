@@ -5,6 +5,7 @@
 //= require vendor/iCheck/icheck.min
 //= require vendor/slimScroll/jquery.slimscroll.min
 //= require vendor/metisMenu/metisMenu.min
+//= require vendor/jquery-validate/jquery.validate.min
 //= require_self
 
 jQuery(function() {
@@ -96,15 +97,6 @@ $(document).ready(function () {
   // Set minimal height of #wrapper to fit the window
   setTimeout(function () {
     fixWrapperHeight();
-  });
-
-  // Sparkline bar chart data and options used under Profile image on left navigation panel
-  $("#sparkline1").sparkline([5, 6, 7, 2, 0, 4, 2, 4, 5, 7, 2, 4, 12, 11, 4], {
-    type: 'bar',
-    barWidth: 7,
-    height: '30px',
-    barColor: '#62cb31',
-    negBarColor: '#53ac2a'
   });
 
   // Initialize tooltips

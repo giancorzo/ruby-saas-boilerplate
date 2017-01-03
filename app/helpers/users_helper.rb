@@ -24,4 +24,17 @@ module UsersHelper
       return "hred"
     end
   end
+
+  def role_description(role)
+    case role
+    when "interviewer"
+      return "Can only access to assigned interviews"
+    when "approver"
+      return "Can access to interviews and and move a candidate through the process"
+    when "hmanager"
+      return "Can access the interview results, scorecards and profiles"
+    when "admin"
+      return "Account user with full access"
+    end
+  end
 end

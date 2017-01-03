@@ -20,4 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        role:
+          interviewer: Interviewer
+          approver: Approver
+          hmanager: Hiring Manager
+          admin: Admin
+          one: "User type"

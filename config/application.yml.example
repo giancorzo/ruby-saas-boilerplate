@@ -7,29 +7,38 @@
 # everything is setup for it. Change it according to your dev configuration.
 
 development:
-    admin_name: First User
-    admin_email: user@example.com
-    admin_password: changeme
-    domain_name: example.com
     host: localhost
-    database: example_development
+    database: t3_development
     database_username: root
     database_password: admin
+    smtp_domain: localhost
+    smtp_username: <%= ENV['SMTP_USERNAME'] %>
+    smtp_password: <%= ENV['SMTP_PASSWORD'] %>
+    s3_bucket_name: <% ENV['S3_BUCKET_NAME'] %>
+    aws_access_key_id: <% ENV['S3_BUCKET_NAME'] %>
+    aws_secret_access_key: <% ENV['S3_BUCKET_NAME'] %>
+    aws_region: <% ENV['S3_BUCKET_NAME'] %>
 test:
-    admin_name: First User
-    admin_email: user@example.com
-    admin_password: changeme
-    domain_name: example.com
     host: localhost
-    database: example_test
+    database: t3_test
     database_username: root
     database_password: admin
+    smtp_domain: localhost
+    smtp_username: <%= ENV['SMTP_USERNAME'] %>
+    smtp_password: <%= ENV['SMTP_PASSWORD'] %>
+    s3_bucket_name: <% ENV['S3_BUCKET_NAME'] %>
+    aws_access_key_id: <% ENV['S3_BUCKET_NAME'] %>
+    aws_secret_access_key: <% ENV['S3_BUCKET_NAME'] %>
+    aws_region: <% ENV['S3_BUCKET_NAME'] %>
 production:
-    admin_name: <%= ENV["ADMIN_NAME"] %>
-    admin_email: <%= ENV["ADMIN_EMAIL"] %>
-    admin_password: <%= ENV["ADMIN_PASSWORD"] %>
-    domain_name: <%= ENV["DOMAIN_NAME"] %>
     host: <%= ENV["HOST"] %>
     database: <%= ENV["SECRET_KEY_BASE"] %>
     database_username: <%= ENV["SECRET_KEY_BASE"] %>
     database_password: <%= ENV["SECRET_KEY_BASE"] %>
+    smtp_domain: <%= ENV["SMTP_DOMAIN"] %>
+    smtp_username: <%= ENV['SMTP_USERNAME'] %>
+    smtp_password: <%= ENV['SMTP_PASSWORD'] %>
+    s3_bucket_name: <% ENV['S3_BUCKET_NAME'] %>
+    aws_access_key_id: <% ENV['S3_BUCKET_NAME'] %>
+    aws_secret_access_key: <% ENV['S3_BUCKET_NAME'] %>
+    aws_region: <% ENV['S3_BUCKET_NAME'] %>    

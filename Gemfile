@@ -8,7 +8,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 
 gem 'twitter-bootstrap-rails'
-gem 'devise'
+gem 'devise', '~> 4.2'
+gem 'devise_invitable', '~> 1.7.0'
 gem 'mysql2', '~> 0.3.18'
 gem 'therubyracer', :platform=>:ruby
 
@@ -41,3 +42,5 @@ gem 'lograge'
 gem 'simple_form'
 gem 'annotate'
 gem 'stroke-seven-rails'
+gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'

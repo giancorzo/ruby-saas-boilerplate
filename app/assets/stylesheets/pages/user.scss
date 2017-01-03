@@ -1,0 +1,49 @@
+.radio label {
+  padding: 0px;
+}
+
+.iradio_square-green {
+  margin-right: 10px;
+}
+
+.profile-empty-image {
+  width: 76px;
+  height: 76px;
+  color: white;
+  background-color: #EA5C41;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.profile-edit-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border: 1px solid #737373;
+  border-radius: 3px;
+  margin: 6px 0 0;
+  background-color: #EA5C41;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+}
+
+.profile-edit-image img {
+  width: 100%;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}

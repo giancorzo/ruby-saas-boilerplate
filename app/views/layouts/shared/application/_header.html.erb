@@ -21,7 +21,9 @@
             <a class="" href="login.html">Login</a>
           </li>
           <li>
-            <a class="" href="login.html">Logout</a>
+            <%= link_to destroy_user_session_path, :method => :delete do %>
+              Logout
+            <% end %>
           </li>
           <li>
             <a class="" href="profile.html">Profile</a>

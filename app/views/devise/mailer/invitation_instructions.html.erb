@@ -1,0 +1,15 @@
+<h3><%= t("devise.mailer.invitation_instructions.hello"%></h3>
+<p><%= t("devise.mailer.invitation_instructions.someone_invited_you", user: @resource.name || @resource.email) %></p>
+<% if @resource.invitation_due_at %>
+  <p><%= t("devise.mailer.invitation_instructions.accept_until", expire_days: @resource.invitation_due_at - Date.today ,email: @resource.email) %></p>
+<% end %>
+<p><%= t("devise.mailer.invitation_instructions.ignore").html_safe %></p>
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <%= link_to t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, :invitation_token => @token),:input_html => {style: "background-color:#6dc6dd;border-collapse:separate;border-top:20px solid #6dc6dd;border-right:40px solid #6dc6dd;border-bottom:20px solid #6dc6dd;border-left:40px solid #6dc6dd;border-radius:3px;color:#ffffff;display:inline-block;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight:600;letter-spacing:.3px;text-decoration:none"} %>
+      </td>
+    </tr>
+  </tbody>
+</table>

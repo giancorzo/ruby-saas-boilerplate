@@ -28,7 +28,12 @@
         <%= link_to edit_user_path(user), class: "hpanel #{header_color(user)} user-panel" do %>
           <div class="panel-body">
             <span class="label label-<%= bootstrap_color(user) %> pull-right"><%= user.role.capitalize %></span>
-            <img alt="logo" class="img-circle m-b" src="images/profile.jpg">
+            <%= image_tag user.avatar.url(:thumb),class: "img-circle" if user.avatar.exists? %>
+            <% if !user.avatar.exists? %>
+              <div class="img-circle m-b profile-empty-image">
+                <%= user.name[0]%>
+              </div>
+            <% end %>
             <h3><%= user.name %></h3>
             <div class="text-muted font-bold m-b-xs"><%= user.email %></div>
           </div>

@@ -31,13 +31,12 @@ Rails.application.configure do
   config.assets.quiet = true
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: "email-smtp.us-west-2.amazonaws.com",
     port: 587,
-    domain: Rails.application.secrets.domain_name,
-    authentication: "plain",
+    user_name: Figaro.env.aws_access_key_id,
+    password: Figaro.env.aws_secret_access_key,
+    authentication: :login,
     enable_starttls_auto: true,
-    user_name: Rails.application.secrets.email_provider_username,
-    password: Rails.application.secrets.email_provider_password
   }
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
@@ -58,4 +57,14 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # config.paperclip_defaults = {
+  #   storage: :s3,
+  #   s3_credentials: {
+  #     bucket: Figaro.env.s3_bucket_name,
+  #     access_key_id: Figaro.env.aws_access_key_id,
+  #     secret_access_key: Figaro.env.aws_secret_access_key,
+  #     s3_region: Figaro.env.aws_region,
+  #   }
+  # }
 end
