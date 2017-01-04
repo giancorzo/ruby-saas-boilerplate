@@ -1,7 +1,7 @@
 <aside id="menu">
   <div id="navigation">
     <div class="profile-picture">
-      <%= image_tag current_user.avatar.url(:thumb) if current_user.avatar.exists? %>
+      <%= image_tag current_user.avatar.url(:thumb),class: "img-circle m-b" if current_user.avatar.exists? %>
       <% if !current_user.avatar.exists? %>
         <div class="img-circle m-b profile-empty-image" style="margin: 0px auto 15px auto;">
           <%= current_user.name[0]%>
@@ -18,9 +18,15 @@
             <small class="text-muted"><%= current_user.role.capitalize %> <b class="caret"></b></small>
           </a>
           <ul class="dropdown-menu animated flipInX m-t-xs">
-            <li><a href="profile.html">Profile</a></li>
+            <li>
+              <%= link_to "Profile", profile_path %>
+            </li>
             <li class="divider"></li>
-            <li><a href="login.html">Logout</a></li>
+            <li>
+              <%= link_to destroy_user_session_path, :method => :delete do %>
+                Logout
+              <% end %>
+            </li>
           </ul>
         </div>
       </div>
@@ -28,23 +34,34 @@
 
     <ul class="nav" id="side-menu">
       <li class="<%= current_page?(root_path) ? "active" : "" %>">
-        <a href="index.html">
+        <%= link_to root_path do %>
           <span class="nav-label">Dashboard</span>
-        </a>
+        <% end %>
       </li>
-      <li class="<%= current_page?(users_path) || current_page?(new_user_path) || current_page?(user_path(current_user)) ? "active" : ""%>">
-        <a href="#" <%= current_page?(users_path) || current_page?(new_user_path) || current_page?(user_path(current_user)) ? 'aria-expanded="true"' : "" %>>
-          <span class="nav-label">Users</span>
-          <span class="fa arrow"></span>
-        </a>
-        <ul class="nav nav-second-level collapse  <%= current_page?(users_path) || current_page?(new_user_path) ? 'in' : "" %>"
-            aria-expanded="<%= current_page?(users_path) ||
-                               current_page?(new_user_path)%>">
-          <li class="<%= current_page?(users_path) ? "active" : "" %>"><%= link_to "All Users",users_path %></a></li>
-          <li class="<%= current_page?(new_user_path) ? "active" : "" %>"><%= link_to "Invite new user",new_user_path %></li>
-          <li class="<%= current_page?(user_path(current_user)) ? "active" : "" %>"><%= link_to "Your profile", current_user %></li>
-        </ul>
-      </li>
+      <% if current_user.admin? %>
+        <li class="<%= current_page?(users_path) ||
+                       current_page?(new_user_path) ||
+                       current_page?(user_path(current_user)) ? "active" : ""%>">
+
+          <a href="#" <%= current_page?(users_path) ||
+                          current_page?(new_user_path) ||
+                          current_page?(user_path(current_user)) ? 'aria-expanded="true"' : "" %>>
+            <span class="nav-label">Users</span>
+            <span class="fa arrow"></span>
+          </a>
+          <ul class="nav nav-second-level collapse
+                     <%= current_page?(users_path) ||
+                         current_page?(new_user_path) ||
+                         current_page?(user_path(current_user)) ? 'in' : "" %>"
+              aria-expanded="<%= current_page?(users_path) ||
+                                 current_page?(new_user_path) ||
+                                 current_page?(user_path(current_user)) %>">
+            <li class="<%= current_page?(users_path) ? "active" : "" %>"><%= link_to "All Users",users_path %></a></li>
+            <li class="<%= current_page?(new_user_path) ? "active" : "" %>"><%= link_to "Invite new user",new_user_path %></li>
+            <li class="<%= current_page?(user_path(current_user)) ? "active" : "" %>"><%= link_to "Your profile", profile_path %></li>
+          </ul>
+        </li>
+      <% end %>
     </ul>
   </div>
 </aside>

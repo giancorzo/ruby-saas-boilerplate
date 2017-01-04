@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   authenticate :user do
     resources :users
+    get 'profile' => "users#profile"
+    
     root 'dashboard#index'
   end
 
