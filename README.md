@@ -1,48 +1,29 @@
-T3
+Talent Hacking
 ================
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+This project implements the main features needed to support the "A" Method of recruting allowing people to recruit easily and allways in the same way.
 
-Rails Composer is supported by developers who purchase our RailsApps tutorials.
+### Getting Set Up
 
-Problems? Issues?
------------
+This site runs on **Ruby 2.3.1** and **Rails 4.2.1**
 
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
+#### Installing the Site on your Local Machine
 
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
+1. Make sure to fork this repository
+2. When you have it cloned to your local machine make sure your Ruby version is 2.3.1.
 
-If the application doesn't work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
+##### Populating the Database
 
-Ruby on Rails
--------------
+The `db/seeds.rb` file is used to populate essential information in order to use the system.  Use the command `rake db:seed` to populate the database. You can run it as many times as you'd like, it deletes all meta data and repopulates it with each run.  For now the seed file creates an administrator user but eventually when the curricula get open-sourced like this project it will create a demo site for you to use.
 
-This application requires:
+##### Custom configuration files
 
-- Ruby 2.3.1
-- Rails 4.2.1
+To avoid conflicts between developers and to store private environment variables like Github API key we use `figaro` gem. `figaro` creates a file called `application.yml` that's located in the `config/` directory but not checked into git (no, you can't have my passwords).
 
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
+Check out the [Figaro Documentation](https://github.com/laserlemon/figaro) for a very easy-to-understand explanation of how the gem works. You basically just need to run `rails generate figaro:install` and populate the missing variables in `application.yml`.  You can find an example of the requested variables in `config/application.yml.example`.
 
-Getting Started
----------------
+##### Running the server
 
-Documentation and Support
--------------------------
+Run `rails server` the app should be running at `http://localhost:3000`.
 
-Issues
--------------
-
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
-
-License
--------
+This is basically all you need to get yourself set up with the repository. Of course, things not always go according to plan when installing things but I'm certain your google skills will light the way.
