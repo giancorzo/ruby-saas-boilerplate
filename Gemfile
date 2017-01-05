@@ -21,11 +21,12 @@ end
 
 group :development do
   gem 'better_errors'
-  gem 'capistrano', '~> 3.0.1'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails', '~> 1.1.0'
+  gem 'capistrano'
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rvm'
   gem 'capistrano-rails-console'
-  gem 'capistrano-rvm', '~> 0.1.1'
+
   gem 'hub', :require=>nil
   gem 'rails_layout'
 end

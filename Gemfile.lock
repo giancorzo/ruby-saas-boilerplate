@@ -65,6 +65,8 @@ GEM
     capistrano-bundler (1.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-puma (0.2.3)
+      capistrano (>= 3.0)
     capistrano-rails (1.1.0)
       capistrano (>= 3.0.0)
       capistrano-bundler (>= 1.0.0)
@@ -167,6 +169,7 @@ GEM
     pry-rescue (1.4.4)
       interception (>= 0.5)
       pry
+    puma (3.6.2)
     rack (1.6.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -264,11 +267,12 @@ DEPENDENCIES
   aws-sdk (~> 2.3)
   better_errors
   byebug
-  capistrano (~> 3.0.1)
+  capistrano
   capistrano-bundler
-  capistrano-rails (~> 1.1.0)
+  capistrano-puma
+  capistrano-rails
   capistrano-rails-console
-  capistrano-rvm (~> 0.1.1)
+  capistrano-rvm
   coffee-rails (~> 4.1.0)
   devise (~> 4.2)
   devise_invitable (~> 1.7.0)
@@ -282,6 +286,7 @@ DEPENDENCIES
   pluck_to_hash
   pry-rails
   pry-rescue
+  puma
   rails (= 4.2.1)
   rails_layout
   rubocop
