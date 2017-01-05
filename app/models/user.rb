@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+  before_create :set_default_role
+
   def self.invite_guest!(attributes={}, invited_by=nil, message)
    self.invite!(attributes, invited_by) do |invitable|
      invitable.invitation_message = message
@@ -52,6 +54,10 @@ class User < ActiveRecord::Base
 
   def password_required?
    !persisted? || !password.blank? || !password_confirmation.blank?
+  end
+
+  def set_default_role
+    self.role = User.roles[:admin]
   end
 
 end

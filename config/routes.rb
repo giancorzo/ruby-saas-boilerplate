@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   authenticate :user do
     resources :users
     get 'profile' => "users#profile"
-    
+
     root 'dashboard#index'
   end
 
@@ -13,5 +13,8 @@ Rails.application.routes.draw do
     sign_in: "login",
     sign_out: "logout",
     sign_up: "signup"
-   }
+  },
+  controllers: {
+    registrations: "identity/registrations"
+  }
 end
