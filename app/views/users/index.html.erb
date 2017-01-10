@@ -27,7 +27,7 @@
       <div class="col-lg-3">
         <%= link_to edit_user_path(user), class: "hpanel #{header_color(user)} user-panel" do %>
           <div class="panel-body">
-            <span class="label label-<%= bootstrap_color(user) %> pull-right"><%= user.role.capitalize %></span>
+            <span class="label label-<%= bootstrap_color(user) %> pull-right"><%= user.try(:role).capitalize %></span>
             <%= image_tag user.avatar.url(:thumb),class: "img-circle" if user.avatar.exists? %>
             <% if !user.avatar.exists? %>
               <div class="img-circle m-b profile-empty-image">
