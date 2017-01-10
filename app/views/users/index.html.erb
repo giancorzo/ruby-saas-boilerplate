@@ -21,8 +21,8 @@
       </div>
   </div>
 <% end %>
-<div class="row">
-  <% @users.each_slice(4) do |rows| %>
+<% @users.each_slice(4) do |rows| %>
+  <div class="row mb-7">
     <% rows.each do |user| %>
       <div class="col-lg-3">
         <%= link_to edit_user_path(user), class: "hpanel #{header_color(user)} user-panel" do %>
@@ -40,5 +40,5 @@
         <% end %>
       </div>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
