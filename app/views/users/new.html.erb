@@ -1,3 +1,32 @@
+<% content_for :scripts do %>
+  <script type="text/javascript">
+    $().ready(function() {
+      $("form").validate({
+        rules: {
+          "user[email]" : {
+            required: true,
+            email: true
+          },
+          "user[role]": {
+            required: true
+          }
+        },
+        submitHandler: function(form) {
+          form.submit();
+        },
+        errorPlacement: function(error, element) {
+          switch (element.attr("name")) {
+            case "user[role]":
+              $(element).parents(".col-sm-10").append(error);
+              break;
+            default:
+              error.insertAfter(element);
+          }
+        }
+      });
+    });
+</script>
+<% end %>
 <% content_for :page_title do %>
   <div class="small-header">
       <div class="hpanel">
@@ -26,11 +55,10 @@
     <div class="hpanel hblue">
       <div class="panel-body">
         <%= simple_form_for @user, :html => { class: "form-horizontal"} do |f| %>
-        <%= f.error_notification %>
         <div class="form-group">
           <%= f.label :name, class: "col-sm-2 control-label", required:false %>
           <div class="col-sm-10">
-            <%= f.input :name, label: false, :input_html => {class: "form-control"} %>
+            <%= f.input :name, label: false, required:false, :input_html => {class: "form-control"} %>
           </div>
         </div>
         <div class="form-group">
