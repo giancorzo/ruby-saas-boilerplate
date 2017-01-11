@@ -1,11 +1,19 @@
 <% content_for :scripts do %>
   <script type="text/javascript">
     $().ready(function() {
+
+      $.validator.addMethod("customEmail",
+          function(value, element) {
+              return /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value);
+          },
+          "Please enter a valid email address."
+      );
+
       $("form").validate({
         rules: {
           "user[email]" : {
             required: true,
-            email: true
+            customEmail: true
           },
           "user[role]": {
             required: true
