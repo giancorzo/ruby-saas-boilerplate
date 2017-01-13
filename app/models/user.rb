@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  before_create :set_default_role
+  before_validation :set_default_role, on: :create
 
   enum role: [:interviewer, :approver, :hmanager, :admin]
 
@@ -59,6 +59,7 @@ class User < ActiveRecord::Base
 
   def set_default_role
     self.role = User.roles[:admin]
+    return true
   end
 
 end
