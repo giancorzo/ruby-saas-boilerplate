@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  before_create :set_default_role
+
   enum role: [:interviewer, :approver, :hmanager, :admin]
 
   validates :email, presence: true, uniqueness: true
@@ -42,8 +44,6 @@ class User < ActiveRecord::Base
 
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-
-  before_create :set_default_role
 
   def self.invite_guest!(attributes={}, invited_by=nil, message)
    self.invite!(attributes, invited_by) do |invitable|
