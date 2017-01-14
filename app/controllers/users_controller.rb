@@ -34,10 +34,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.invite_guest!({:email => params[:user][:email],
-                                :name => params[:user][:name],
-                                :role => params[:user][:role]},
-                               current_user, params[:message])
+    @user = User.invite!({:email => params[:user][:email],
+                          :name => params[:user][:name],
+                          :role => params[:user][:role]},
+                          current_user)
     respond_to do |format|
        if @user.persisted?
          format.html { redirect_to session[:my_previous_url], notice: 'User was successfully created.' }

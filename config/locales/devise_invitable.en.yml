@@ -18,7 +18,7 @@ en:
     mailer:
       invitation_instructions:
         subject: "Invitation to join talentHacking"
-        hello: "You've been invited to join talentHacking"
+        hello: "Hi %{user}, you've been invited to join talentHacking"
         someone_invited_you: "%{user}, has requested that you join talentHacking account."
         join: "Get started bellow by creating a login for yourself."
         accept: "Join talentHacking"

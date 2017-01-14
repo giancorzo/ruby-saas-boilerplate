@@ -45,12 +45,6 @@ class User < ActiveRecord::Base
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-  def self.invite_guest!(attributes={}, invited_by=nil, message)
-   self.invite!(attributes, invited_by) do |invitable|
-     invitable.invitation_message = message
-   end
-  end
-
   protected
 
   def password_required?
