@@ -27,5 +27,6 @@ en:
           interviewer: Interviewer
           approver: Approver
           hmanager: Hiring Manager
+          transcriptor: Transcriptor
           admin: Admin
           one: "User type"

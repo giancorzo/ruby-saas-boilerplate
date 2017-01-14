@@ -23,11 +23,12 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable
 
   before_validation :set_default_role, on: :create
 
-  enum role: [:interviewer, :approver, :hmanager, :admin]
+  enum role: [:interviewer, :approver, :hmanager, :transcriptor, :admin]
 
   validates :email, presence: true, uniqueness: true
   validates_format_of :email,:with => Devise::email_regexp

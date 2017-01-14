@@ -79,17 +79,19 @@
           <label class="col-sm-2 control-label">User Type</label>
           <div class="col-sm-10">
             <% User.roles.keys.each do |role| %>
-              <div class="radio">
-                <label class="">
-                  <input class="radio_buttons optional form-control i-checks"
-                  type="radio"
-                  value="<%= role %>"
-                  name="user[role]"
-                  id="user_role_<%= role %>">
-                  <span style="font-weight:bold;"><%= I18n.t("activerecord.attributes.user.role.#{role}") %></span>
-                  <p style="margin-left:35px;"><%= role_description(role) %></p>
-                </label>
-              </div>
+              <% if role != "transcriptor" %>
+                <div class="radio">
+                  <label class="">
+                    <input class="radio_buttons optional form-control i-checks"
+                    type="radio"
+                    value="<%= role %>"
+                    name="user[role]"
+                    id="user_role_<%= role %>">
+                    <span style="font-weight:bold;"><%= I18n.t("activerecord.attributes.user.role.#{role}") %></span>
+                    <p style="margin-left:35px;"><%= role_description(role) %></p>
+                  </label>
+                </div>
+              <% end %>
             <% end %>
           </div>
         </div>
