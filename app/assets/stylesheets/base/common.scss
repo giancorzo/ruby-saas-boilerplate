@@ -3689,3 +3689,10 @@ ul.h-list li:hover a {
 .error_notification {
   margin-bottom: 20px;
 }
+
+#error_explanation ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  color: red;
+}
