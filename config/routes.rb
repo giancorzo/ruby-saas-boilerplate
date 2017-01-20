@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   authenticate :user do
     resources :users
+    resources :job_positions, except: [:index]
+    resources :accounts, only: [:index, :create]
     get 'profile' => "users#profile"
 
     root 'dashboard#index'

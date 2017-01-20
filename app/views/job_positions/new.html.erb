@@ -1,0 +1,21 @@
+<% content_for :page_title do %>
+  <div class="small-header">
+      <div class="hpanel">
+          <div class="panel-body">
+              <div id="hbreadcrumb" class="pull-right">
+                  <ol class="hbreadcrumb breadcrumb">
+                      <li><%= link_to "Dashboard", root_path %></li>
+                      <li class="active">
+                          <span>New Job Position</span>
+                      </li>
+                  </ol>
+              </div>
+              <h2 class="font-light m-b-xs">
+                  New Job Position
+              </h2>
+              <small>Create a new Job Position for the account you are working on</small>
+          </div>
+      </div>
+  </div>
+<% end %>
+<%= render 'form' %>

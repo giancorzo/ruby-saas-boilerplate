@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: job_positions
+#
+#  id                :integer          not null, primary key
+#  account_id        :integer
+#  status            :boolean          default("1")
+#  title             :string(255)
+#  mission_statement :text(65535)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account_id: 
+  status: false
+  title: MyString
+  mission_statement: MyText
+
+two:
+  account_id: 
+  status: false
+  title: MyString
+  mission_statement: MyText

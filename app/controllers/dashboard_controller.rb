@@ -5,5 +5,6 @@ class DashboardController < ApplicationController
   end
 
   def index
+    @job_position = JobPosition.includes(:account).all.pluck_to_hash(:id,"accounts.name as account",:title,:status)
   end
 end

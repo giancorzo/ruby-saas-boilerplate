@@ -1,2 +1,39 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<% content_for :scripts do %>
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+      $('.table').DataTable({
+        empty: "You need to create a Job Position to get started"
+    	});
+    });
+  </script>
+<% end %>
+<div class="row">
+  <div class="col-12">
+    <div class="hpanel">
+      <div class="panel-body">
+        <%= link_to "Add new job position", new_job_position_path, class: "btn btn-primary pull-right" %>
+        <table class="table" data-paging="true" data-filtering="true" data-sorting="true">
+          <thead>
+            <tr>
+              <th>Accounts</th>
+              <th>Job Position</th>
+              <th data-formatter="statusFormatter">Status</th>
+              <th data-type="html" data-sort-ignore="true">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @job_position.each do |job| %>
+              <tr>
+                <td><%= job["account"] %></td>
+                <td><%= job["title"] %></td>
+                <td><%= job["status"] %></td>
+                <td><%= link_to "View", job_position_path(job["id"]) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

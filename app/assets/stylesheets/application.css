@@ -5,6 +5,8 @@
  = require stroke-seven
  = require stroke-seven-helper
  = require vendor/metisMenu/metisMenu
+ = require vendor/toastr/toastr.min
+ = require vendor/datatable/jquery.dataTables.min
  = require_self
  = require main
 */

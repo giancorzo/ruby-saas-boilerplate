@@ -6,6 +6,8 @@
 //= require vendor/slimScroll/jquery.slimscroll.min
 //= require vendor/metisMenu/metisMenu.min
 //= require vendor/jquery-validate/jquery.validate.min
+//= require vendor/toastr/toastr.min
+//= require vendor/datatable/jquery.dataTables.min
 //= require_self
 
 jQuery(function() {
@@ -17,6 +19,24 @@ $(document).ready(function () {
 
   // Add special class to minimalize page elements when screen is less than 768px
   setBodySmall();
+
+  toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
 
   // Handle minimalize sidebar menu
   $('.hide-menu').on('click', function(event){
@@ -206,3 +226,24 @@ $.fn['animatePanel'] = function() {
   }, animateTime)
 
 };
+
+(function($, window) {
+  $.fn.replaceOptions = function(options, blank_text) {
+    var self, $option;
+
+    this.empty();
+    self = this;
+
+    if (blank_text != null) {
+      $option = $("<option>"+blank_text+"</option>");
+      self.append($option);
+    }
+
+    $.each(options, function(index, option) {
+      $option = $("<option></option>")
+        .attr("value", option.value)
+        .text(option.text);
+      self.append($option);
+    });
+  };
+})(jQuery, window);
