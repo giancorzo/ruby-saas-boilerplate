@@ -1,12 +1,7 @@
 /*
- = require twitter-bootstrap-static/bootstrap
- = require twitter-bootstrap-static/sprites
- = require twitter-bootstrap-static/fontawesome
- = require stroke-seven
- = require stroke-seven-helper
- = require vendor/metisMenu/metisMenu
- = require vendor/toastr/toastr.min
- = require vendor/datatable/jquery.dataTables.min
+ = require vendor/themify-icons
+ = require vendor/animate.min
+ = require vendor/sweetalert
  = require_self
  = require main
 */

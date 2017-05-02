@@ -1,22 +1,38 @@
 class AccountsController < ApplicationController
 
-  def index
-    render :json => Account.all.pluck_to_hash("name as text","id as value")
+  def new
+    @account = Account.new
+    render layout: 'devise'
   end
 
   def create
-    status = "ok"
-    message = "success"
-
-    begin
-      raise "Invalid account name" if !params[:name].present?
-      Account.create(name: params[:name])
-      message = "Account was successfully created."
-    rescue => exception
-      status = "fail"
-      message = exception.message
+    @account = Account.new(account_params)
+    @account.owner = current_user
+    respond_to do |format|
+      if @account.save
+        current_user.organization = @account
+        current_user.role = User.roles[:admin]
+        if current_user.save
+          format.html { redirect_to root_path, notice: 'Required information save successfully.' }
+        else
+          format.html { render :new }
+        end
+      else
+        format.html { render :new }
+      end
     end
-    render :json => { :status => status, :message => message }
   end
 
+  def edit
+  end
+
+  def destroy
+
+  end
+
+  private
+
+  def account_params
+    params.require(:account).permit(:name, :website_url)
+  end
 end

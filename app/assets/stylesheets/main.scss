@@ -1,7 +1,37 @@
 @charset "utf-8";
 
-@import "base/colors.scss";
-@import "base/fonts.scss";
-@import "base/common.scss";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
+@import "base/variables";
+@import "base/mixins";
+
+@import "base/typography";
+
+// Core CSS
+@import "base/misc";
+@import "base/sidebar-and-main-panel";
+@import "base/buttons";
+@import "base/inputs";
+@import "base/full-page";
+
+@import "base/alerts";
+@import "base/tables";
+
+@import "base/checkbox-radio";
+@import "base/navbars";
+@import "base/footers";
+
+//Box model
+@import "boxmodel/paddings-margins";
+
+// Fancy Stuff
+
+@import "base/dropdown";
+@import "base/cards";
+@import "base/chartist";
+@import "base/responsive";
+
+@import "pages/login.scss";
+@import "pages/landing.scss";
 @import "pages/user.scss";

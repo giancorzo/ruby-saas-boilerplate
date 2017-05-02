@@ -12,7 +12,11 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'mailer@talenthacking.com'
+  if Rails.env.production?
+    config.mailer_sender = "info@#{Figaro.env.smtp_domain}"
+  else
+    config.mailer_sender = "info@talenthacking.com"
+  end
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -105,7 +109,7 @@ Devise.setup do |config|
   # a value less than 10 in other environments. Note that, for bcrypt (the default
   # algorithm), the cost increases exponentially with the number of stretches (e.g.
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
-  config.stretches = Rails.env.test? ? 1 : 11
+  config.stretches = Rails.env.test? ? 1 : 10
 
   # Set up a pepper to generate the hashed password.
   # config.pepper = '7bec3c88bf2bf6775a1de7ed0aac75db4391e40e30e9ab21c9c3a46c321cbe59a1296d41a0bbf33df496eee52024e72a738ed7d0d66504ea713a9830cb163c81'
@@ -202,7 +206,11 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 6..128
+  if Rails.env.test? || Rails.env.development?
+    config.password_length = 2..128
+  else
+    config.password_length = 8..128
+  end
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly

@@ -1,24 +1,4 @@
 <% content_for :page_title do %>
-  <div class="small-header">
-      <div class="hpanel">
-          <div class="panel-body">
-              <div id="hbreadcrumb" class="pull-right">
-                  <ol class="hbreadcrumb breadcrumb">
-                      <li><%= link_to "Dashboard", root_path %></li>
-                      <li>
-                          <span>Users</span>
-                      </li>
-                      <li class="active">
-                          <span>Edit User</span>
-                      </li>
-                  </ol>
-              </div>
-              <h2 class="font-light m-b-xs">
-                  Edit User
-              </h2>
-              <small>Update user information</small>
-          </div>
-      </div>
-  </div>
+Edit User
 <% end %>
 <%= render 'form' %>

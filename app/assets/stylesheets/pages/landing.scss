@@ -1,0 +1,17 @@
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+
+  h1 {
+    font-size: 3em;
+    margin-bottom: 40px;
+  }
+
+  a {
+    padding: 20px 30px;
+    font-size: 2em;
+  }
+}

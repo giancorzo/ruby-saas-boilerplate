@@ -1,15 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  before_action except: [:profile] do
-    check_allowed_roles(current_user, ["admin"])
-  end
+  before_action except: [:profile] { authorizated_roles(:admin) }
+  before_action only:   [:profile] { authorizated_roles(:user,:admin)}
 
-  before_action only: [:profile] do
-    check_allowed_roles(current_user,["interviewer","approver","hmanager","admin"])
-  end
-
-  after_filter "save_my_previous_url", only: [:new,:edit]
+  after_action :save_my_previous_url, only: [:new,:edit]
 
   def save_my_previous_url
     # session[:previous_url] is a Rails built-in variable to save last url.
@@ -17,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all.where(organization: current_user.organization)
   end
 
   def profile
@@ -36,7 +31,8 @@ class UsersController < ApplicationController
   def create
     @user = User.invite!({:email => params[:user][:email],
                           :name => params[:user][:name],
-                          :role => params[:user][:role]},
+                          :role => params[:user][:role],
+                          :organization_id => current_user.organization_id},
                           current_user)
     respond_to do |format|
        if @user.persisted?

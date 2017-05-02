@@ -2,12 +2,10 @@ Rails.application.routes.draw do
 
   authenticate :user do
     resources :users
-    resources :job_positions, except: [:index]
-    resources :accounts, only: [:index, :create]
-    get 'profile' => "users#profile"
-
     root 'dashboard#index'
   end
+
+  resources :accounts, only: [:new, :create]
 
   devise_for :users,
    path: "",
@@ -15,8 +13,6 @@ Rails.application.routes.draw do
     sign_in: "login",
     sign_out: "logout",
     sign_up: "signup"
-  },
-  controllers: {
-    registrations: "identity/registrations"
   }
+
 end

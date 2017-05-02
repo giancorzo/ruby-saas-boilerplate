@@ -1,39 +1,73 @@
-<div class="color-line"></div>
-<div class="register-container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="text-center m-b-md">
-        <h3>Registration</h3>
-      </div>
-      <div class="hpanel">
-        <div class="panel-body">
-          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
-            <%= devise_error_messages! %>
-            <div class="row">
-              <div class="form-group col-lg-12">
-                <%= f.label :name %>
-                <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+<nav class="navbar navbar-transparent navbar-absolute">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "Saas Boilerplate", root_path, class: "navbar-brand" %>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to "Create an Account", new_user_registration_path %>
+        </li>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="wrapper wrapper-full-page">
+  <div class="full-page login-page">
+    <div class="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Registration</h3>
               </div>
-              <div class="form-group col-lg-12">
-                <%= f.label :email %>
-                <%= f.email_field :email, class: 'form-control' %>
+              <%= devise_error_messages! %>
+              <% flash.each do |name, msg| %>
+                  <%= content_tag :div, msg,:class => "alert alert-danger", :id => "flash_#{name}" if msg.is_a?(String) %>
+              <%end%>
+              <div class="card-content">
+                <div class="form-group">
+                  <%= f.label :name %>
+                  <%= f.text_field :name, :autofocus => true, class: 'form-control  input-no-border' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :email %>
+                  <%= f.email_field :email, class: 'form-control  input-no-border' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :password %>
+                  <%= f.password_field :password, class: 'form-control  input-no-border' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :password_confirmation %>
+                  <%= f.password_field :password_confirmation, class: 'form-control  input-no-border' %>
+                </div>
               </div>
-              <div class="form-group col-lg-6">
-                <%= f.label :password %>
-                <%= f.password_field :password, class: 'form-control' %>
-              </div>
-              <div class="form-group col-lg-6">
-                <%= f.label :password_confirmation %>
-                <%= f.password_field :password_confirmation, class: 'form-control' %>
+              <div class="card-footer text-center">
+                <%= f.submit 'Register', :class => 'btn btn-fill btn-wd' %>
               </div>
             </div>
-            <div class="text-center">
-              <%= f.submit 'Register', :class => 'btn btn-success' %>
-              <%= link_to "Cancel", root_path, class: "btn btn-default" %>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
+    <footer class="footer footer-transparent">
+      <div class="container">
+        <div class="copyright">
+          ©2017, made with <i class="fa fa-heart heart"></i> by Saas Boilerplate
+        </div>
+      </div>
+    </footer>
+    <div class="full-page-background"></div>
   </div>
 </div>

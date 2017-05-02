@@ -24,9 +24,6 @@ en:
     attributes:
       user:
         role:
-          interviewer: Interviewer
-          approver: Approver
-          hmanager: Hiring Manager
-          transcriptor: Transcriptor
+          user: User
           admin: Admin
           one: "User type"

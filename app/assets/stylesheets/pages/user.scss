@@ -1,20 +1,37 @@
-.radio label {
-  padding: 0px;
+.legend-item {
+  margin-right: 20px;
 }
 
-.iradio_square-green {
-  margin-right: 10px;
+.user-title {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+.user-admin-border {
+  border-left: 7px solid $warning-color;
+}
+
+.you-admin-border {
+  border-left: 7px solid $danger-color;
+}
+
+.user-normal-border {
+  border-left: 7px solid #337ab7;
+}
+
+.custom-file-upload input {
+  display:none;
 }
 
 .profile-empty-image {
-  width: 76px;
-  height: 76px;
+  width: 50px;
+  height: 50px;
   color: white;
   background-color: #EA5C41;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
 }
 
@@ -35,19 +52,13 @@
   font-size: 40px;
   font-weight: bold;
   color: white;
+  position: absolute;
 }
 
 .profile-edit-image img {
   width: 100%;
 }
 
-.custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-}
-
-.user-panel {
-  display: block;
+.profile-edit-image-content {
+  margin-left: 120px;
 }

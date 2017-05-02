@@ -15,26 +15,64 @@
     });
 </script>
 <% end %>
-<div class="color-line"></div>
-<div class="login-container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="text-center m-b-md">
-        <h3>Forgot your password?</h3>
-        <p>We'll send password reset instructions.</p>
-      </div>
-      <div class="hpanel">
-        <div class="panel-body">
-          <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form'}) do |f| %>
-            <%= devise_error_messages! %>
-            <div class="form-group">
-              <%= f.label :email %>
-              <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
-            </div>
-            <%= f.submit 'Reset Password', class: 'btn btn-success btn-block' %>
-          <% end %>
+<nav class="navbar navbar-transparent navbar-absolute">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "Sass Boilerplate", root_path, class: "navbar-brand" %>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to "Create an Account", new_account_path %>
+        </li>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="wrapper wrapper-full-page">
+  <div class="full-page login-page">
+    <div class="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+            <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form'}) do |f| %>
+              <div class="card" data-background="color" data-color="blue">
+                <div class="card-header">
+                  <h3 class="card-title">Forgot Password?</h3>
+                </div>
+                <%= devise_error_messages! %>
+                <% flash.each do |name, msg| %>
+                    <%= content_tag :div, msg,:class => "alert alert-danger", :id => "flash_#{name}" if msg.is_a?(String) %>
+                <%end%>
+                <div class="card-content">
+                  <div class="form-group">
+                    <%= f.label :email %>
+                    <%= f.email_field :email, :autofocus => true, class: 'form-control input-no-border', placeholder: "example@gmail.com" %>
+                  </div>
+                  <div class="card-footer text-center">
+                    <%= f.submit 'Reset Password', class: 'btn btn-fill btn-wd' %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
+    <footer class="footer footer-transparent">
+      <div class="container">
+        <div class="copyright">
+          ©2017, made with <i class="fa fa-heart heart"></i> by Sass Boilerplate
+        </div>
+      </div>
+    </footer>
+    <div class="full-page-background"></div>
   </div>
 </div>

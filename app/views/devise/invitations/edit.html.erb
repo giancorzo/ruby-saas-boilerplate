@@ -1,11 +1,58 @@
-<h2><%= t 'devise.invitations.edit.header' %></h2>
-
-<%= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :invitation_token %>
-
-  <%= f.input :password %>
-  <%= f.input :password_confirmation %>
-
-  <%= f.button :submit, t("devise.invitations.edit.submit_button") %>
-<% end %>
+<nav class="navbar navbar-transparent navbar-absolute">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "Saas Boilerplate", root_path, class: "navbar-brand" %>
+    </div>
+  </div>
+</nav>
+<div class="wrapper wrapper-full-page">
+  <div class="full-page login-page">
+    <div class="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+            <%= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f| %>
+                <%= f.hidden_field :invitation_token %>
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Set password</h3>
+                </div>
+                <div class="card-content">
+                  <%= devise_error_messages! %>
+                  <% flash.each do |name, msg| %>
+                      <%= content_tag :div, msg,:class => "alert alert-danger ph-0", :id => "flash_#{name}" if msg.is_a?(String) %>
+                  <%end%>
+                  <div class="form-group">
+                    <%= f.label :password %>
+                    <%= f.input_field :password, class: 'form-control  input-no-border' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :password_confirmation %>
+                    <%= f.input_field :password_confirmation, class: 'form-control  input-no-border' %>
+                  </div>
+                </div>
+                <div class="card-footer text-center">
+                  <%= f.button :submit, t("devise.invitations.edit.submit_button"), class: "btn btn-fill btn-wd" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer footer-transparent">
+      <div class="container">
+        <div class="copyright">
+          ©2017, made with <i class="fa fa-heart heart"></i> by Saas Boilerplate
+        </div>
+      </div>
+    </footer>
+    <div class="full-page-background"></div>
+  </div>
+</div>

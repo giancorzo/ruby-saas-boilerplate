@@ -2,23 +2,63 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "T3" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "T3" %>">
+    <title><%= content_for?(:title) ? yield(:title) : "Sass Boilerplate" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Sass Boilerplate" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <%= favicon_link_tag 'favicon-152.png', rel: 'apple-touch-icon', type: 'image/png' %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="color-line"></div>
-    <%= render "layouts/shared/application/header" %>
-    <%= render "layouts/shared/application/menu" %>
-    <div id="wrapper">
-      <%= yield :page_title %>
-      <div class="content">
-        <%= yield %>
+    <div class="wrapper">
+      <%= render "layouts/shared/application/menu" %>
+      <div class="main-panel">
+        <%= render "layouts/shared/application/header" %>
+        <div class="content">
+          <%= yield %>
+        </div>
+        <footer class="footer">
+					<div class="container-fluid">
+						<nav class="pull-left">
+							<ul>
+								<li>
+									<a href="http://www.creative-tim.com">
+										Creative Tim
+									</a>
+								</li>
+								<li>
+									<a href="http://blog.creative-tim.com">
+										Blog
+									</a>
+								</li>
+								<li>
+									<a href="http://www.creative-tim.com/license">
+										Licenses
+									</a>
+								</li>
+							</ul>
+						</nav>
+						<div class="copyright pull-right">
+							&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
+						</div>
+					</div>
+				</footer>
       </div>
     </div>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+    <% flash_message = flash.map { |name,msg| msg if msg.is_a?(String) }.join('<br>') %>
+    <% if !flash_message.empty? %>
+      <script>
+        $(document).ready(function() {
+          $.notify({
+            message: '<%= flash_message %>'
+          },{
+            type: 'warning'
+          });
+        });
+      </script>
+    <% end %>
     <%= yield :modals %>
     <%= yield :scripts %>
   </body>

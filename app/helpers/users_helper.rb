@@ -1,43 +1,13 @@
 module UsersHelper
-  def bootstrap_color(user)
-    if user and user.role
-      case user.role.to_sym
-      when :interviewer
-        return "success"
-      when :approver
-        return "warning"
-      when :hmanager
-        return "primary"
-      when :admin
-        return "danger"
-      end
-    end
-  end
-
-  def header_color(user)
-    if user and user.role
-      case user.role.to_sym
-      when :interviewer
-        return "hgreen"
-      when :approver
-        return "hyellow"
-      when :hmanager
-        return "hviolet"
-      when :admin
-        return "hred"
-      end
-    end
-    return ""
+  def card_border user
+    return current_user == user ? "you-admin-border" :
+           user.admin? ? 'user-admin-border' : 'user-normal-border'
   end
 
   def role_description(role)
     case role
-    when "interviewer"
-      return "Can only access to assigned interviews"
-    when "approver"
-      return "Can access to interviews and and move a candidate through the process"
-    when "hmanager"
-      return "Can access the interview results, scorecards and profiles"
+    when "user"
+      return "Has access full access except for billing, user-management."
     when "admin"
       return "Account user with full access"
     end

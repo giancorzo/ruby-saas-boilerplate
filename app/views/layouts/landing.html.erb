@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Sass Boilerplate" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Sass Boilerplate" %>">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">   
+    <%= favicon_link_tag 'favicon-152.png', rel: 'apple-touch-icon', type: 'image/png' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="color-line"></div>
+    <%= yield %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+    <%= yield :scripts %>
+  </body>
+</html>

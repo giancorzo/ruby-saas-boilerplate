@@ -1,43 +1,76 @@
-<% content_for :page_title do %>
-  <div class="small-header">
-      <div class="hpanel">
-          <div class="panel-body">
-              <div id="hbreadcrumb" class="pull-right">
-                  <ol class="hbreadcrumb breadcrumb">
-                      <li><%= link_to "Dashboard", root_path %></li>
-                      <li>
-                          <span>Users</span>
-                      </li>
-                      <li class="active">
-                          <span>List all</span>
-                      </li>
-                  </ol>
-              </div>
-              <h2 class="font-light m-b-xs">
-                  Users
-              </h2>
-              <small>Manage your application users</small>
-          </div>
-      </div>
-  </div>
+<% content_for :page_title do %>Team members<% end %>
+<% content_for :scripts do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("[data-behavior='delete']").on('click',function(e) {
+        e.preventDefault();
+        var url = $(this).attr("href");
+        var el = $(this).parents(".card");
+        swal({
+          title: "Are you sure?",
+          text:  "You will not be able to recover this user",
+          type:  "warning",
+          confirmButtonColor: '#d9534f',
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, cancel!',
+          closeOnConfirm: false,
+          showCancelButton: true,
+          closeOnCancel: true,
+          showLoaderOnConfirm: true
+        }, function(confirmed) {
+          if (confirmed) {
+            $.ajax({
+              url: url,
+              dataType: "JSON",
+              method: "DELETE",
+              success: function() {
+                swal('Deleted!','The user has been deleted','success');
+                el.remove();
+              }
+            });
+          }
+        });
+      });
+    });
+  </script>
 <% end %>
+<div class="clearfix">
+  <%= link_to "Invite User", new_user_path, class: 'btn btn-default btn-fill btn-wd mb-21' %>
+  <div>
+    <span class="legend-item"><span class="label label-danger">&nbsp;</span> You </span>
+    <span class="legend-item"><span class="label label-warning">&nbsp;</span> Admin users</span>
+    <span class="legend-item"><span class="label label-primary">&nbsp;</span> Normal users</span>
+  </div>
+</div>
+<br/>
+
 <% @users.each_slice(4) do |rows| %>
   <div class="row mb-7">
     <% rows.each do |user| %>
-      <div class="col-lg-3">
-        <%= link_to edit_user_path(user), class: "hpanel #{header_color(user)} user-panel" do %>
-          <div class="panel-body">
-            <span class="label label-<%= bootstrap_color(user) %> pull-right"><%= user.role.capitalize if user.role %></span>
-            <%= image_tag user.avatar.url(:thumb),class: "img-circle" if user.avatar.exists? %>
+      <div class="col-md-3">
+        <div class="card <%= card_border(user) %>">
+          <div class="card-content clearfix">
+            <%= image_tag user.avatar.url(:thumb), class: 'img-circle img-no-padding img-responsive avatar' if user.avatar.exists? %>
             <% if !user.avatar.exists? %>
               <div class="img-circle m-b profile-empty-image">
                 <%= user.name[0]%>
               </div>
             <% end %>
-            <h3><%= user.name %></h3>
-            <div class="text-muted font-bold m-b-xs"><%= user.email %></div>
+            <span class="user-title mb-7"><%= user.name %></span><br>
+            <small><%= user.email %></small>
+            <hr class="mb-0">
           </div>
-        <% end %>
+          <div class="card-footer text-right">
+            <%= link_to edit_user_path(user), class:"btn btn-icon" do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
+            <% if current_user != user %>
+              <%= link_to user_path(user), data: { behavior: 'delete'}, class: "btn btn-icon btn-danger" do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>

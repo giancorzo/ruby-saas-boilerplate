@@ -2,14 +2,18 @@
 #
 # Table name: accounts
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  name        :string(255)      default(""), not null
+#  website_url :string(255)
+#  owner_id    :integer          default(0), not null
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 
-class Account < ActiveRecord::Base
-  has_many :job_position
+class Account < ApplicationRecord
 
-  validates :name, presence: true
+  validates :owner, presence: true
+  belongs_to :owner, class_name: "User"
+  has_many :users, inverse_of: :organization
+
 end
