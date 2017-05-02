@@ -1,11 +1,11 @@
-Talent Hacking
+Ruby Saas Boilerplate
 ================
 
-This project implements the main features needed to support the "A" Method of recruting allowing people to recruit easily and allways in the same way.
+Ruby project that includes everything you need to create a saas project.
 
 ### Getting Set Up
 
-This site runs on **Ruby 2.3.1** and **Rails 4.2.1**
+This site runs on **Ruby 2.3.1** and **Rails 5.0.0**
 
 #### Installing the Site on your Local Machine
 
